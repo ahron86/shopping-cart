@@ -2,6 +2,16 @@
 var cart = [];
 var total = 0;
 
+var STORAGE_ID = 'shopping-cart';
+var saveToLocalStorage = function () {
+    localStorage.setItem(STORAGE_ID, JSON.stringify(cart));
+  }
+
+  var getFromLocalStorage = function () {
+    return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+  }
+  var cart = getFromLocalStorage();
+
 var updateCart = function () {
   // TODO: Write this function. In this function we render the page.
   // Meaning we make sure that all our cart items are displayed in the browser.
@@ -29,6 +39,7 @@ var addItem = function (item) {
   // TODO: Write this function. Remember this function has nothing to do with display. 
   // It simply is for adding an item to the cart array, no HTML involved - honest ;-)
   cart.push(item);
+  saveToLocalStorage();
 }
 
 var clearCart = function () {
